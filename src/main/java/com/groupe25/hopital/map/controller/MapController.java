@@ -8,7 +8,7 @@ public class MapController {
 
     @GetMapping("/")
     public String index(){
-        return "map/index";
+        return "map/map";
     }
 
 }
