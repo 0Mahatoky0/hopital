@@ -2,7 +2,6 @@
 
 Application pour une plateforme d'etude des hopitaux
 
-
 ## Lancement
 
 Veuillez d'abord initaliser la base de donnees avant de lancer l'application si vous 
