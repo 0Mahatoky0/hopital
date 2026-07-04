@@ -19,6 +19,9 @@ public class HealthCenterMapper {
         dto.setName(entity.getName());
         dto.setAmenity(entity.getAmenity());
         dto.setHealthcare(entity.getHealthcare());
+        var coord = entity.getGeom().getCoordinate();
+        dto.setLat(coord.y);
+        dto.setLon(coord.x);
         if (entity.getGeom() != null) {
             GeoJSON geoJSON = writer.write(entity.getGeom());
             dto.setGeometry(geoJSON);

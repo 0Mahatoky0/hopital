@@ -17,4 +17,6 @@ public class HealthCenterDTO {
     private String speciality;
     private String uuid;
     private Object geometry;
+    private double lat;
+    private double lon;
 }
