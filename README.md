@@ -43,7 +43,16 @@ spring.datasource.password=votre_mot_de_passe
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 ```
-
+Il faut aussi importer la base de donnee , pour ce faire , voici la commande a executer 
+```bash
+# script pour utiliser le backup du base de donne 
+psql -h localhost -U ton_user -d ton_db -f sig_hopital.sql
+```
+Si ca marche pas faire : 
+```bash
+# script pour utiliser le backup du base de donne 
+sudo -u postgres psql -h localhost -U ton_user -d ton_db -f sig_hopital.sql
+```
 Puis entrer la commande suivante dans le terminal
 
 ```shell

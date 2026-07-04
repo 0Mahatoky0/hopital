@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -28,8 +30,9 @@ public class HealthCenterModel {
     @Column(name = "completene")
     private BigDecimal completene;
 
-    @Column(name = "amenity", length = 80)
-    private String amenity;
+    @ManyToOne
+    @JoinColumn(name = "amenity")
+    private AmenityModel amenity;
 
     @Column(name = "healthcare", length = 80)
     private String healthcare;
@@ -138,8 +141,11 @@ public class HealthCenterModel {
     public BigDecimal getCompletene() { return completene; }
     public void setCompletene(BigDecimal completene) { this.completene = completene; }
 
-    public String getAmenity() { return amenity; }
-    public void setAmenity(String amenity) { this.amenity = amenity; }
+ public AmenityModel getAmenity() {
+     return amenity;
+ }public void setAmenity(AmenityModel amenity) {
+     this.amenity = amenity;
+ }
 
     public String getHealthcare() { return healthcare; }
     public void setHealthcare(String healthcare) { this.healthcare = healthcare; }
