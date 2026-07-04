@@ -7,10 +7,22 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "© OpenStreetMap",
 }).addTo(map);
 
-fetch("/geojson/info_centre.geojson")
+fetch("http://localhost:8080/api/healthCenter/all")
   .then((response) => response.json())
   .then((data) => {
-    L.geoJSON(data, {
+    const geojson = {
+      type: "FeatureCollection",
+      features: data.map((center) => ({
+        type: "Feature",
+        geometry: center.geometry,
+        properties: {
+          name: center.name,
+          amenity: center.amenity.libelle,
+        },
+      })),
+    };
+
+    L.geoJSON(geojson, {
       pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, {
           radius: 8,
@@ -29,7 +41,3 @@ fetch("/geojson/info_centre.geojson")
       },
     }).addTo(map);
   });
-
-async function loadAllPoints(){
-  const url = "/api/hospita"
-}
