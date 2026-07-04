@@ -30,41 +30,6 @@ fetch("/geojson/info_centre.geojson")
     }).addTo(map);
   });
 
-let findPosButton = L.Control.extend({
-  options: {
-    position: "bottomleft",
-  },
-
-  onAdd: function (map) {
-    let container = L.DomUtil.create(
-      "div",
-      "leaflet-bar leaflet-control leaflet-custom-control",
-    );
-    let button = L.DomUtil.create("button", "", container);
-    button.innerHTML = "Position";
-    button.style.backgroundColor = "white";
-    button.style.padding = "5px 10px";
-    button.style.cursor = "pointer";
-
-    L.DomEvent.on(button, "click", function (e) {
-      L.DomEvent.stopPropagation(e); 
-      findPosition(map);
-    });
-
-    return container;
-  },
-});
-
-let control = new findPosButton();
-control.addTo(map);
-
-function findPosition(map) {
-  map.locate({
-    setView: true,
-    maxZoom: 16,
-  });
-
-  map.on("locationfound", function (event) {
-    map.flyTo(event.latlng, 16);
-  });
+async function loadAllPoints(){
+  const url = "/api/hospita"
 }
