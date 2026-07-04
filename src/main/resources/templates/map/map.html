@@ -1,37 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Centre hospitaliers et medicaux</title>
-    <link
-      rel="stylesheet"
-      th:href="@{https://unpkg.com/leaflet@1.9.4/dist/leaflet.css}"
-    />
-    <link
-      rel="stylesheet"
-      th:href="@{https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css}"
-    />
+    <title>Centre hospitaliers et médicaux</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    
     <link rel="stylesheet" th:href="@{/css/map.css}" />
   </head>
   <body>
-    <header>
-      <nav></nav>
-    </header>
 
     <main>
       <div id="map"></div>
     </main>
 
-    <footer></footer>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-
     <script th:src="@{/js/map.js}"></script>
+    
   </body>
 </html>

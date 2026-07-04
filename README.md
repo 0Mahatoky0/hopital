@@ -57,8 +57,8 @@ mvn spring-boot:run
 -
 -
 - 
-- 
-- 
+- ETU004342 RANOMENJANAHARY Mandresy Ally
+- ETU004081 RAKOTONDRATSIMA Mendrika Arontsoa
 - ETU003951 RAKOTOARINIA Miharivola Nomena Manou
 
 ## Technologies
