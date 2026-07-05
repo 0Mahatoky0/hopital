@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MapController {
 
-    @GetMapping("/")
+    @GetMapping("/distance")
     public String index(){
-        return "map/map";
+        return "map/feat_distance";
+    }
+
+    @GetMapping("/stat_com")
+    public String statCom(){
+        return "map/feat_stat_com";
     }
 
 }
