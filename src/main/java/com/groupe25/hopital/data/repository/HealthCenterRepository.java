@@ -25,4 +25,20 @@ public interface HealthCenterRepository extends JpaRepository<HealthCenterModel,
             @Param("lat") double lat,
             @Param("lon") double lon,
             @Param("radius") double radius);
+
+    @Query(value = """
+                SELECT *
+                FROM centre_sante
+                WHERE ST_DWithin(
+                    geom,
+                    ST_SetSRID(ST_MakePoint(:lon, :lat), 4326)::geography,
+                    :radius
+                )
+                AND amenity = :amenityId
+            """, nativeQuery = true)
+    List<HealthCenterModel> findNearestByLatAndLonAndAmenityId(
+            @Param("lat") double lat,
+            @Param("lon") double lon,
+            @Param("radius") double radius,
+            @Param("amenityId") Long amenityId);
 }

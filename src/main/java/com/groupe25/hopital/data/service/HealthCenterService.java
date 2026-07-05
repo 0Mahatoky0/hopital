@@ -38,12 +38,46 @@ public class HealthCenterService {
                 .toList();
     }
 
+    public List<NearestHealthCenterDTO> getCloserCenterByAmenity(LocationDTO location, Long amenityId, int limit) {
+        List<NearestHealthCenterDTO> nearestCenters = repository
+                .findNearestByLatAndLonAndAmenityId(location.getLat(), location.getLon(), SEARCH_RADIUS, amenityId)
+                .stream()
+                .map(HealthCenterMapper::toDTO)
+                .map(center -> {
+                    RouteDTO route = osrmClient
+                            .getRoute(location.getLat(), location.getLon(), center.getLat(), center.getLon())
+                            .getRoutes().get(0);
+                    return new NearestHealthCenterDTO(center, route);
+                })
+                .sorted((c1, c2) -> Double.compare(c1.getRoute().getDuration(), c2.getRoute().getDuration()))
+                .limit(limit)
+                .toList();
+        return nearestCenters;
+    }
+
+    public List<NearestHealthCenterDTO> getCloserCenter(LocationDTO location, int limit) {
+        List<NearestHealthCenterDTO> nearestCenters = getAllHealthCenterWithinDistance(location.getLat(),
+                location.getLon(), SEARCH_RADIUS)
+                .stream()
+                .map(center -> {
+                    RouteDTO route = osrmClient
+                            .getRoute(location.getLat(), location.getLon(), center.getLat(), center.getLon())
+                            .getRoutes().get(0);
+                    return new NearestHealthCenterDTO(center, route);
+                })
+                .sorted((c1, c2) -> Double.compare(c1.getRoute().getDuration(), c2.getRoute().getDuration()))
+                .limit(limit)
+                .toList();
+        return nearestCenters;
+    }
+
     public NearestHealthCenterDTO getClosestCenter(LocationDTO location) {
         HealthCenterDTO bestCenter = null;
         RouteDTO bestRoute = null;
 
         double bestTime = Double.MAX_VALUE;
-        List<HealthCenterDTO> all = getAllHealthCenterWithinDistance(location.getLat(),location.getLon(),SEARCH_RADIUS);
+        List<HealthCenterDTO> all = getAllHealthCenterWithinDistance(location.getLat(), location.getLon(),
+                SEARCH_RADIUS);
         System.out.println("centres trouvés: " + all.size());
         double lat;
         double lon;
