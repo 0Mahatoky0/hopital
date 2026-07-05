@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MapController {
 
-    @GetMapping("/")
+    @GetMapping("/division")
     public String index(){
-        return "map/map";
+        return "map/feat_division.html";
     }
 
 }
