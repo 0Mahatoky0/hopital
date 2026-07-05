@@ -17,9 +17,10 @@
       th:href="@{https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css}"
     />
     <link rel="stylesheet" th:href="@{/css/feat_stat_com.css}" />
+     <link rel="stylesheet" th:href="@{/css/navbar.css}" />
   </head>
   <body>
-
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
     <main>
       <div id="map"></div>
     </main>

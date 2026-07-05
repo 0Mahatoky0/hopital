@@ -44,14 +44,14 @@ Il faut aussi importer la base de donnee , pour ce faire , voici la commande a e
 
 ```bash
 # script pour utiliser le backup du base de donne 
-psql -h localhost -U ton_user -d ton_db -f sig_hopital.sql
+psql -h localhost -U ton_user -d ton_db -f new_sig_bd.sql
 ```
 
 Si ca marche pas faire :
 
 ```bash
 # script pour utiliser le backup du base de donne 
-sudo -u postgres psql -h localhost -U ton_user -d ton_db -f sig_hopital.sql
+sudo -u postgres psql -h localhost -U ton_user -d ton_db -f new_sig_bd.sql
 ```
 
 Puis entrer la commande suivante dans le terminal
