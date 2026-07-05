@@ -2,9 +2,11 @@ package com.groupe25.hopital.map.service;
 
 import com.groupe25.hopital.map.model.*;
 import com.groupe25.hopital.map.repository.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.locationtech.jts.io.geojson.GeoJsonWriter;
 import org.springframework.stereotype.Service;
+
+// Nouveaux imports Wololo et JTS
+import org.wololo.jts2geojson.GeoJSONWriter;
+import org.wololo.geojson.Geometry;
 
 import java.util.*;
 
@@ -14,12 +16,13 @@ public class DivisionService {
     private final ProvinceRepository provinceRepository;
     private final DistrictRepository districtRepository;
     private final CommuneRepository communeRepository;
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private final GeoJsonWriter geoJsonWriter = new GeoJsonWriter();
+    
+    // Instanciation du convertisseur Wololo
+    private final GeoJSONWriter geoJsonWriter = new GeoJSONWriter();
 
     public DivisionService(ProvinceRepository provinceRepository,
-                            DistrictRepository districtRepository,
-                            CommuneRepository communeRepository) {
+                           DistrictRepository districtRepository,
+                           CommuneRepository communeRepository) {
         this.provinceRepository = provinceRepository;
         this.districtRepository = districtRepository;
         this.communeRepository = communeRepository;
@@ -34,7 +37,7 @@ public class DivisionService {
             case DISTRICT -> districtRepository.findAll().forEach(d ->
                     features.add(buildFeature(d.getId(), d.getNom(), null, d.getGeom())));
             case COMMUNE -> communeRepository.findAll().forEach(c ->
-        features.add(buildFeature(c.getId(), c.getNom(), null, c.getGeom())));
+                    features.add(buildFeature(c.getId(), c.getNom(), null, c.getGeom())));
         }
 
         Map<String, Object> featureCollection = new HashMap<>();
@@ -44,7 +47,7 @@ public class DivisionService {
     }
 
     private Map<String, Object> buildFeature(Long id, String nom, Long population,
-                                              org.locationtech.jts.geom.Geometry geom) {
+                                             org.locationtech.jts.geom.Geometry geom) {
         Map<String, Object> feature = new HashMap<>();
         feature.put("type", "Feature");
 
@@ -55,8 +58,13 @@ public class DivisionService {
         feature.put("properties", properties);
 
         try {
-            String geomJson = geoJsonWriter.write(geom);
-            feature.put("geometry", objectMapper.readValue(geomJson, Map.class));
+            if (geom != null) {
+                // Wololo convertit directement le JTS en un objet GeoJSON structuré (Map/List compatible)
+                Geometry wololoGeoJson = geoJsonWriter.write(geom);
+                feature.put("geometry", wololoGeoJson);
+            } else {
+                feature.put("geometry", null);
+            }
         } catch (Exception e) {
             feature.put("geometry", null);
         }
