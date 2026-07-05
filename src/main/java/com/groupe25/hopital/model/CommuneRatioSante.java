@@ -14,7 +14,7 @@ public class CommuneRatioSante {
     @Id
     private Integer gid;
 
-    @Column(name = "nom_commune")
+    @Column(name = "commune")
     private String nomCommune;
 
     @Column(name = "district")
@@ -23,10 +23,11 @@ public class CommuneRatioSante {
     @Column(name = "region")
     private String region;
 
-    private Integer population;
-
-    @Column(name = "nombre_centres")
+    @Column(name = "nb_centres")
     private Long nombreCentres;
+
+    @Column(name = "nb_population")
+    private Long nbPopulation;
 
     @Column(name = "ratio_pour_10000_hab")
     private Double ratioPour10000Hab;
@@ -67,14 +68,6 @@ public class CommuneRatioSante {
         this.region = region;
     }
 
-    public Integer getPopulation() {
-        return population;
-    }
-
-    public void setPopulation(Integer population) {
-        this.population = population;
-    }
-
     public Long getNombreCentres() {
         return nombreCentres;
     }
@@ -82,7 +75,7 @@ public class CommuneRatioSante {
     public void setNombreCentres(Long nombreCentres) {
         this.nombreCentres = nombreCentres;
     }
-
+    
     public Double getRatioPour10000Hab() {
         return ratioPour10000Hab;
     }
@@ -97,6 +90,14 @@ public class CommuneRatioSante {
 
     public void setGeom(String geom) {
         this.geom = geom;
+    }
+
+    public Long getNbPopulation() {
+        return nbPopulation;
+    }
+
+    public void setNbPopulation(Long nbPopulation) {
+        this.nbPopulation = nbPopulation;
     }
     
 }
