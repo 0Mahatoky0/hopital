@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MapController {
 
+    @GetMapping("/")
+    public String welcome() {
+        return "redirect:/distance";
+    }
+
     @GetMapping("/distance")
     public String dist(){
         return "map/feat_distance";
