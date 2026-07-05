@@ -108,7 +108,6 @@ function afficherDivision(type) {
     if (thisRequest !== requestId) return;
 
     // On retire la couche précédente ICI, juste avant d'ajouter la nouvelle,
-    // pour être sûr de retirer celle qui est réellement affichée.
     if (currentAdminLayer) {
       map.removeLayer(currentAdminLayer);
       currentAdminLayer = null;
