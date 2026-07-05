@@ -19,3 +19,54 @@ body {
   width: 100%;
   height: 100%;
 }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.leaflet-division-control {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.division-btn {
+  background-color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  border-bottom: 1px solid #eee;
+}
+
+.division-btn:last-child {
+  border-bottom: none;
+}
+
+.division-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.division-btn.active {
+  background-color: #2563eb;
+  color: white;
+  font-weight: bold;
+}
