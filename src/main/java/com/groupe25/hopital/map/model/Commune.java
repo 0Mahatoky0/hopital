@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.locationtech.jts.geom.Geometry;
 
 @Entity
-@Table(name = "commune")
+@Table(name = "communes_tmp")
 public class Commune {
 
     @Id
