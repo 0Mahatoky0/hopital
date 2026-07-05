@@ -71,11 +71,6 @@ function findPosition(map) {
   });
 }
 
-// =========================================================================
-// PARTIE 3 : Choix du mode de division graphique de la carte
-// (district / province / commune)
-// =========================================================================
-
 const DIVISIONS = {
   province: { url: "/api/carte/division?type=PROVINCE", color: "#1d4ed8", label: "Province" },
   district: { url: "/api/carte/division?type=DISTRICT", color: "#059669", label: "District" },
