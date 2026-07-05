@@ -7,13 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MapController {
 
     @GetMapping("/distance")
-    public String index(){
+    public String dist(){
         return "map/feat_distance";
     }
 
     @GetMapping("/stat_com")
     public String statCom(){
         return "map/feat_stat_com";
+    }
+    
+    @GetMapping("/division")
+    public String divs(){
+        return "map/feat_division.html";
     }
 
 }
